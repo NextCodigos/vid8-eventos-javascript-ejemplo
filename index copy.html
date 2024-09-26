@@ -6,27 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saludar Dinámicamente</title>
     <script type="text/javascript">
+        // Variable inicializada sin valor
         let nombre = "";
 
+        // Definimos la función inicio cuando la ventana se carga
         window.onload = inicio;
 
         function inicio() {
+            // Asignar la función 'saludar' al evento onclick del botón
             document.getElementById("boton_ir").onclick = saludar;
         }
 
         function saludar() {
             // Obtener el valor del input con id 'nombre_input'
-            nombre = document.getElementById("nombre_input").value.trim();
+            nombre = document.getElementById("nombre_input").value;
 
-            // Comprobar si ya existe un mensaje y actualizarlo o crear uno nuevo
-            let mensaje = document.getElementById("mensaje");
-            if (mensaje) {
-                // Si el mensaje ya existe, actualizar su contenido
-                mensaje.innerHTML = nombre !== "" ? `Hola ${nombre}` : "Inserte su nombre";
+            // Si el nombre no está vacío, insertar el mensaje en el cuerpo del documento
+            if (nombre.trim() !== "") {
+                document.body.insertAdjacentHTML("beforeend", `<p>Hola ${nombre}</p>`);
             } else {
-                // Si no existe, insertar un nuevo párrafo con el mensaje
-                const nuevoMensaje = nombre !== "" ? `Hola ${nombre}` : "Inserte su nombre";
-                document.body.insertAdjacentHTML("beforeend", `<p id="mensaje">${nuevoMensaje}</p>`);
+                // alert("Por favor, ingresa un nombre.");
+                document.body.insertAdjacentHTML("beforeend", `<p>Inserte su nombre</p>`);
             }
         }   
     </script>

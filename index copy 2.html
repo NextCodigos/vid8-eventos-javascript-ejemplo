@@ -18,15 +18,22 @@
             // Obtener el valor del input con id 'nombre_input'
             nombre = document.getElementById("nombre_input").value.trim();
 
-            // Comprobar si ya existe un mensaje y actualizarlo o crear uno nuevo
+            // Obtener el elemento donde se mostrará el mensaje o crear uno nuevo
             let mensaje = document.getElementById("mensaje");
-            if (mensaje) {
-                // Si el mensaje ya existe, actualizar su contenido
-                mensaje.innerHTML = nombre !== "" ? `Hola ${nombre}` : "Inserte su nombre";
+
+            // Si no existe el elemento, crearlo y agregarlo al cuerpo
+            if (!mensaje) {
+                mensaje = document.createElement("p");
+                mensaje.id = "mensaje";
+                document.body.appendChild(mensaje);
+            }
+
+            // Actualizar el contenido del mensaje según el valor del nombre
+            // Sino esta vacio
+            if (nombre !== "") {
+                mensaje.textContent = `Hola ${nombre}`;
             } else {
-                // Si no existe, insertar un nuevo párrafo con el mensaje
-                const nuevoMensaje = nombre !== "" ? `Hola ${nombre}` : "Inserte su nombre";
-                document.body.insertAdjacentHTML("beforeend", `<p id="mensaje">${nuevoMensaje}</p>`);
+                mensaje.textContent = "Inserte su nombre";
             }
         }   
     </script>
