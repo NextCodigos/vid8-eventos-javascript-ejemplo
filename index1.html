@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saludar Dinámicamente</title>
+    <script type="text/javascript">
+        let nombre = "";
+
+        window.onload = inicio;
+
+        function inicio() {
+            document.getElementById("boton_ir").onclick = saludar;
+        }
+
+        function saludar() {
+            // Obtener el campo input y su valor
+            let nombreInput = document.getElementById("nombre_input");
+            nombre = nombreInput.value;
+
+            // Verificar si el nombre está vacío
+            if (nombre.trim() !== "") {
+                // Si hay un nombre válido, insertar el saludo en el cuerpo del documento
+                document.body.insertAdjacentHTML("beforeend", `<p>Hola ${nombre}</p>`);
+                
+                // Limpiar el valor del input
+                nombreInput.value = "";
+
+                // Eliminar el mensaje de error si existe
+                let mensajeError = document.getElementById("error_message");
+                if (mensajeError) {
+                    mensajeError.remove();
+                }
+            } else {
+                // Si el nombre está vacío, crear o mostrar un mensaje de error debajo del input
+                let mensajeError = document.getElementById("error_message");
+                
+                // Si no existe ya el mensaje de error, lo creamos
+                if (!mensajeError) {
+                    nombreInput.insertAdjacentHTML("afterend", `<p id="error_message" style="color: red;">Por favor, ingresa tu nombre.</p>`);
+                }
+            }
+        }   
+    </script>
+</head>
+<body>
+    <!-- Campo de entrada para el nombre -->
+    <label for="nombre_input">Ingresa tu nombre:</label>
+    <input type="text" id="nombre_input" placeholder="Tu nombre">
+    
+    <!-- Botón para ejecutar el saludo -->
+    <button id="boton_ir">Saludar</button>
+</body>
+</html>

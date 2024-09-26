@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saludar Dinámicamente</title>
+    <script type="text/javascript">
+        // Variable inicializada sin valor
+        let nombre = "";
+
+        // Definimos la función inicio cuando la ventana se carga
+        window.onload = inicio;
+
+        function inicio() {
+            // Asignar la función 'saludar' al evento onclick del botón
+            document.getElementById("boton_ir").onclick = saludar;
+        }
+
+        function saludar() {
+            // Obtener el valor del input con id 'nombre_input'
+            nombre = document.getElementById("nombre_input").value;
+
+            // Si el nombre no está vacío, insertar el mensaje en el cuerpo del documento
+            if (nombre.trim() !== "") {
+                document.body.insertAdjacentHTML("beforeend", `<p>Hola ${nombre}</p>`);
+            } else {
+                alert("Por favor, ingresa un nombre.");
+            }
+        }   
+    </script>
+</head>
+<body>
+    <!-- Campo de entrada para el nombre -->
+    <label for="nombre_input">Ingresa tu nombre:</label>
+    <input type="text" id="nombre_input" placeholder="Tu nombre">
+    
+    <!-- Botón para ejecutar el saludo -->
+    <button id="boton_ir">Saludar</button>
+</body>
+</html>

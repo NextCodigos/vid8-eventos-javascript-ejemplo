@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controlar Contenido Dinámico</title>
+    <script type="text/javascript">
+        function saludar(n, m) {
+            return `Hola ${n}, el numero es ${m}`;
+        }
+
+        // Función que genera el saludo y lo muestra en la página
+        function iniciar() {
+            let resultado = saludar("Jab", 6);
+            document.body.insertAdjacentHTML("beforeend", `<p class="resultado">El resultado es: ${resultado}</p>`);
+        }
+        
+        // Función que configura los eventos
+        function todo_preparado() {
+            document.getElementById("boton1").onclick = iniciar;
+            document.getElementById("boton2").onclick = ir_a_una_web;
+            document.getElementById("boton3").onclick = vaciar_contenido;
+        }
+
+        // Vaciar solo los mensajes generados dinámicamente
+        function vaciar_contenido() {
+            // Seleccionar todos los párrafos con la clase "resultado"
+            let mensajes = document.querySelectorAll(".resultado");
+            
+            // Eliminar cada mensaje
+            mensajes.forEach(mensaje => mensaje.remove());
+        }
+
+        // Función para redirigir a una página web
+        function ir_a_una_web() {
+            location.href = "http://www.html6.es";
+        }
+
+        // Ejecutar cuando la página haya cargado
+        window.onload = todo_preparado;
+    </script>
+</head>
+<body>
+    <!-- Botones para interactuar con el contenido -->
+    <button id="boton1">Mostrar Mensaje</button>
+    <button id="boton2">Ir a una Web</button>
+    <button id="boton3">Vaciar Contenido</button>
+</body>
+</html>
